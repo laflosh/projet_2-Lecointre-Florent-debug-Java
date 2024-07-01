@@ -10,19 +10,24 @@ import java.util.Map;
 public class Main {
 
 	public static void main(String[] args) throws Exception  {
+		//Variables for construc's class
 		String filepath =  "Project02Eclipse/symptoms.txt";
 		String filename = "result.out";
 		
+		//Declarations of objects required for program execution
 		ISymptomReader reader = new ReadSymptomDataFromFile(filepath);
 		ISymptomWriter writer = new WriteSymptomeDataToFile(filename);
 		AnalyticsCounter analyticsCounter = new AnalyticsCounter(reader, writer);
-				
+		
+		//Input file reading and storage in List
 		List<String> symptoms = analyticsCounter.getSymptoms();
 		
+		//Count symptoms and storage in Map
 		Map<String,Integer> orderSymptoms = analyticsCounter.countSymptoms(symptoms);
 		
 		orderSymptoms = analyticsCounter.sortSymptoms(orderSymptoms);
 		
+		//Output file writing
 		analyticsCounter.writeSymptoms(orderSymptoms);
 	}
 }
